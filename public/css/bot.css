@@ -1,0 +1,460 @@
+/* Styling for the chat bot */
+body {
+  background-color: #edeff2;
+  font-family: "Calibri", "Roboto", sans-serif;
+}
+
+
+
+.container {
+    position: absolute;
+  width: calc(100% - 20px);
+  max-width: 800px;
+  height: 500px;
+  border-radius: 10px;
+  background-color: #fff;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  background-color: #f8f8f8;
+  overflow: hidden;
+}
+.dialogContainer {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    width: 775px;
+    height: 265px;
+    max-height: 300px;
+    margin: 0;
+    border-radius: 4px;
+    padding: 10px;
+   
+    background-attachment: inherit;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 150px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  
+}
+
+
+.dialogInput {
+    width: 300px;
+    margin-top: 15px;
+    border: 1px solid rgba(86,167,161,1.0);
+    height: 60px;
+    font-weight: bold;
+    border-radius: 4px;
+    font-size: 13px;
+    padding: 10px;
+    color: #225282;
+}
+
+.message {
+   
+  /*  margin-top: 0.5em;
+    font-size: 13px;
+    font-weight: bold;
+    color: #fff; 
+  */
+    color: white;
+      padding: 10px 18px;
+      line-height: 16px;
+      font-size: 16px;
+    
+      border-radius: 13px;
+      margin-bottom: 1px;
+      width: 96%;
+      position: relative;
+                
+}
+
+.bot {
+    padding: 0.5em;
+    border-radius: 5px;
+    background-color: #00aae7;
+    margin-left: 0.5em;
+    margin-right: 30%;
+    -webkit-align-self: flex-start;
+    align-self: flex-start;
+	-webkit-animation: fadein 2s; 
+       -moz-animation: fadein 2s; 
+        -ms-animation: fadein 2s; 
+         -o-animation: fadein 2s; 
+            animation: fadein 2s;
+}
+.top_menu {
+  background-color: #0d416b;
+  width: 100%;
+  padding: 20px 0 15px;
+  box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
+}
+.top_menu .buttons {
+  margin: 3px 0 0 20px;
+  position: absolute;
+}
+.top_menu .buttons .button {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 10px;
+  position: relative;
+}
+
+/*
+.top_menu .buttons .button.minimize {
+  background-color: #fdbf68;
+}
+.top_menu .buttons .button.close {
+  background-color: #f5886e;
+}*/
+
+.top_menu .title {
+  text-align: center;
+  color: #edeff2;
+  font-size: 25px;
+}
+
+.user {
+    padding: 0.5em;
+    border-radius: 5px;
+    background-color: #2368a0;
+    margin-right: 0.5em;
+    margin-left: 50%;
+    -webkit-align-self: flex-end;
+    align-self: flex-end;
+	-webkit-animation: fadein 1s; 
+       -moz-animation: fadein 1s;
+        -ms-animation: fadein 1s; 
+         -o-animation: fadein 1s; 
+            animation: fadein 1s;
+}
+
+/* _________________________________________*/
+.messages {
+  position: relative;
+  list-style: none;
+  padding: 20px 10px 0 10px;
+  margin: 0;
+  height: 347px;
+  overflow: scroll;
+}
+.messages .message {
+  clear: both;
+  overflow: hidden;
+  margin-bottom: 20px;
+  transition: all 0.5s linear;
+  opacity: 0;
+}
+.messages .message.left .avatar {
+  background-color: #f5886e;
+  float: left;
+}
+.messages .message.left .text_wrapper {
+  background-color: #ffe6cb;
+  margin-left: 20px;
+}
+.messages .message.left .text_wrapper::after, .messages .message.left .text_wrapper::before {
+  right: 100%;
+  border-right-color: #ffe6cb;
+}
+.messages .message.left .text {
+  color: #c48843;
+}
+.messages .message.right .avatar {
+  background-color: #fdbf68;
+  float: right;
+}
+.messages .message.right .text_wrapper {
+  background-color: #c7eafc;
+  margin-right: 20px;
+  float: right;
+}
+.messages .message.right .text_wrapper::after, .messages .message.right .text_wrapper::before {
+  left: 100%;
+  border-left-color: #c7eafc;
+}
+.messages .message.right .text {
+  color: #45829b;
+}
+.messages .message.appeared {
+  opacity: 1;
+}
+.messages .message .avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.messages .message .text_wrapper {
+  display: inline-block;
+  padding: 20px;
+  border-radius: 6px;
+  width: calc(100% - 45px);
+  min-width: 100px;
+  position: relative;
+}
+.messages .message .text_wrapper::after, .messages .message .text_wrapper:before {
+  top: 18px;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+.messages .message .text_wrapper::after {
+  border-width: 13px;
+  margin-top: 0px;
+}
+.messages .message .text_wrapper::before {
+  border-width: 15px;
+  margin-top: -2px;
+}
+.messages .message .text_wrapper .text {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.bottom_wrapper {
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+  padding: 20px 20px;
+  position: absolute;
+  bottom: 0;
+}
+.bottom_wrapper .message_input_wrapper {
+  display: inline-block;
+  height: 50px;
+  border-radius: 40px;
+  border: 3px solid #0d416b;
+  width: calc(100% - 140px);
+  position: relative;
+  padding: 0 30px;
+}
+.bottom_wrapper .message_input_wrapper .message_input {
+  border: none;
+  height: 100%;
+  box-sizing: border-box;
+   
+  width: calc(100% - 50px);
+  position: absolute;
+  outline-width: 0;
+  color: gray;
+}
+.bottom_wrapper .send_message {
+  width: 140px;
+  height: 50px;
+  display: inline-block;
+  border-radius: 50px;
+  background-color: #a3d063;
+  border: 2px solid #a3d063;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s linear;
+  text-align: center;
+  float: right;
+}
+.bottom_wrapper .send_message:hover {
+  color: #a3d063;
+  background-color: #fff;
+}
+.bottom_wrapper .send_message .text {
+  font-size: 18px;
+  font-weight: 300;
+  display: inline-block;
+  line-height: 48px;
+}
+
+.message_template {
+  display: none;
+}
+
+/*Lets start with the cloud formation rather*/
+
+/*The container will also serve as the SKY*/
+
+*{ margin: 0; padding: 0;}
+
+body {
+	/*To hide the horizontal scroller appearing during the animation*/
+	overflow: hidden;
+}
+
+#clouds{
+	padding: 100px 0;
+	background: #00aae7;
+	background: -webkit-linear-gradient(top, #00aae7 0%, #fff 100%);
+	background: -linear-gradient(top, #00aae7 0%, #fff 100%);
+	background: -moz-linear-gradient(top, #00aae7 0%, #fff 100%);
+}
+
+/*Time to finalise the cloud shape*/
+.cloud {
+	width: 200px; height: 110px;
+	background: #fff;
+	
+	border-radius: 200px;
+	-moz-border-radius: 200px;
+	-webkit-border-radius: 200px;
+	
+	position: relative; 
+}
+
+.cloud:before, .cloud:after {
+	content: '';
+	position: absolute; 
+	background: #fff;
+	width: 100px; height: 80px;
+	position: absolute; top: -15px; left: 10px;
+	
+	border-radius: 100px;
+	-moz-border-radius: 100px;
+	-webkit-border-radius: 100px;
+	
+	-webkit-transform: rotate(30deg);
+	transform: rotate(30deg);
+	-moz-transform: rotate(30deg);
+}
+
+.cloud:after {
+	width: 120px; height: 120px;
+	top: -35px; left: auto; right: 15px;
+}
+
+/*Time to animate*/
+.x1 {
+	-webkit-animation: moveclouds 11s linear infinite;
+	-moz-animation: moveclouds 13s linear infinite;
+	-o-animation: moveclouds 14s linear infinite;
+}
+
+/*variable speed, opacity, and position of clouds for realistic effect*/
+.x2 {
+	left: 200px;
+	
+	-webkit-transform: scale(0.6);
+	-moz-transform: scale(0.6);
+	transform: scale(0.6);
+	opacity: 0.6; /*opacity proportional to the size*/
+	
+	/*Speed will also be proportional to the size and opacity*/
+	/*More the speed. Less the time in 's' = seconds*/
+	-webkit-animation: moveclouds 25s linear infinite;
+	-moz-animation: moveclouds 25s linear infinite;
+	-o-animation: moveclouds 25s linear infinite;
+}
+
+.x3 {
+	left: -250px; top: -200px;
+	
+	-webkit-transform: scale(0.8);
+	-moz-transform: scale(0.8);
+	transform: scale(0.8);
+	opacity: 0.8; /*opacity proportional to the size*/
+	
+	-webkit-animation: moveclouds 20s linear infinite;
+	-moz-animation: moveclouds 20s linear infinite;
+	-o-animation: moveclouds 20s linear infinite;
+}
+
+.x4 {
+	left: 470px; top: -250px;
+	
+	-webkit-transform: scale(0.75);
+	-moz-transform: scale(0.75);
+	transform: scale(0.75);
+	opacity: 0.75; /*opacity proportional to the size*/
+	
+	-webkit-animation: moveclouds 18s linear infinite;
+	-moz-animation: moveclouds 18s linear infinite;
+	-o-animation: moveclouds 18s linear infinite;
+}
+
+.x5 {
+	left: -350px; top: -250px;
+	
+	-webkit-transform: scale(0.8);
+	-moz-transform: scale(0.8);
+	transform: scale(0.8);
+	opacity: 0.8; /*opacity proportional to the size*/
+	
+	-webkit-animation: moveclouds 20s linear infinite;
+	-moz-animation: moveclouds 20s linear infinite;
+	-o-animation: moveclouds 20s linear infinite;
+}
+
+.x6 {
+	left: -150px; top: -150px;
+	
+	-webkit-transform: scale(0.8);
+	-moz-transform: scale(0.8);
+	transform: scale(0.8);
+	opacity: 0.8; /*opacity proportional to the size*/
+	
+	-webkit-animation: moveclouds 20s linear infinite;
+	-moz-animation: moveclouds 20s linear infinite;
+	-o-animation: moveclouds 20s linear infinite;
+}
+.x7 {
+  left: 200px; top: -150px;
+	
+	-webkit-transform: scale(0.6);
+	-moz-transform: scale(0.6);
+	transform: scale(0.6);
+	opacity: 0.6;
+	-webkit-animation: moveclouds 11s linear infinite;
+	-moz-animation: moveclouds 13s linear infinite;
+	-o-animation: moveclouds 14s linear infinite;
+}
+@-webkit-keyframes moveclouds {
+	0% {margin-left: 1000px;}
+	100% {margin-left: -1000px;}
+}
+@-moz-keyframes moveclouds {
+	0% {margin-left: 1000px;}
+	100% {margin-left: -1000px;}
+}
+@-o-keyframes moveclouds {
+	0% {margin-left: 1000px;}
+	100% {margin-left: -1000px;}
+}
+/*__________________________________________*/
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+@keyframes typing {
+  from { width: 0 }
+  to { width: 50% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  20% { border-color: orange; }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "botstarter",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "cfenv": "1.0.x",
+    "express": "4.13.x",
+    "watson-developer-cloud":"*",
+    "node-geocoder": "^3.9.1",
+"request": "^2.71.0",
+    "body-parser":"*"
+  },
+  "repository": {},
+  "engines": {
+    "node": "6.2.x"
+  }
+}
