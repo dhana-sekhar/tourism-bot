@@ -1,119 +1,55 @@
-# watson-bot-starter
+# Project Execution Instructions
+## Run the model directly
 
-##Overview
-Basic chat bot dialog for working with the [Watson Conversation](https://www.ibm.com/watson/developercloud/conversation.html) service on Bluemix. Once deployed you must navigate to the Watson Conversation service and start to create your intents, entities, and dialogs. You may choose to deploy using the Deploy to Bluemix button below or follow the steps for manually running the app in either Bluemix or locally. 
+```
+python3 src/model.py -t <training> -m <model> -c <countries>`
+```
+* training - whether training is needed and mode - test or prod
+* model - which model to use RandomForestRegressor or ExtraTreesRegressor
+* countries - which countries to predict revenue
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/slkaczma/watson-bot-starter)
+## Run the unittests
+### Run all tests
+```
+python3 run-tests.py
+```
+### Model Tests
+All tests - `python3 -m unittest unittests/ModelTests.py`
 
-Follow this [tutorial](https://www.ibm.com/watson/developercloud/doc/conversation/tutorial_basic.shtml) for learning about Intents, Entities, and Dialog. 
+Specific test - `python3 -m unittest unittests.ModelTest.test_02_load`
 
-Scroll to the bottom of this README for more information on working with Watson Conversation. **You can import the example dialog from [lebot.json](lebot.json)**
+### Logger Tests
+All tests - `python3 -m unittest unittests/LoggerTests.py`
 
-![bot chat](img/bot.jpg)
+Specific test - `python3 -m unittest unittests.ModelTest.test_02_predict`
 
-##Run the app on Bluemix
-1. If you do not already have a Bluemix account, [sign up here](https://console.ng.bluemix.net/registration/)
+### API Tests
+All tests - `python3 -m unittest unittests/ApiTests.py`
 
-2. Download and install the [Cloud Foundry CLI](https://github.com/cloudfoundry/cli/releases) tool
+Specific test - `python3 -m unittest unittests.ApiTest.test_04_predict_all`
 
-3. Clone the app to your local environment from your terminal using the following command:
+## IBM AI Enterprise Workflow Capstone
+Files for the IBM AI Enterprise Workflow Capstone project. 
 
-  ```
-  git clone https://github.com/slkaczma/watson-bot-starter.git
-  ```
+### Case study part 1
+The notebook capstone-case-study.ipynb contains all the findings
 
-4. `cd` into this newly created directory
+### Case study part 2
+The code provided in solution-guidance has been modified to take model as parameter and also work for specific set of countries. The notebook capstone-case-study.ipynb contains details for iterating on different models. Running with different preprocessors (StandardScaler, RobustScaler) and models (RandomForestRegressor and ExtraTreesRegressor) the revenue prediction has gone down for some countries while has increased for others.
 
-5. Open the `manifest.yml` file and change the `host` value from `botstarter` to something unique.
+### Case study part 3
+The code for providing HTTP API using flask, logic to predict for all countries, added unit tests for API, added docker file for creating the container out of this which will provide the API for the model to predict the revenue.
 
-  The host you choose will determinate the subdomain of your application's URL:  `<host>.mybluemix.net`
+## API Documentation
 
-6. Connect to Bluemix in the command line tool and follow the prompts to log in.
-
-  ```
-  $ cf api https://api.ng.bluemix.net
-  $ cf login
-  ```
-  
-7. Create the Watson Conversation service using your Bluemix account and replace the corresponding credentials in your `app.js` file.
-
-  ```
-  var conversation = watson.conversation({
-      url: 'https://gateway.watsonplatform.net/conversation/api',   
-      username: 'CONVERSATION_USERNAME',   // Set to your conversation username
-      password: 'CONVERSATION_PASSWORD',   // Set to your conversation password
-      version_date: '2016-07-11',
-      version: 'v1'
-  });
-  ```
-
-8. Once you have a workspace/conversation created, update your Workspace ID:
-   ```
-   var workspace = 'WORKSPACE_ID'; // Set to your Conversation workspace ID
-   ```
-  
-9. Push the app to Bluemix.
-
-  ```
-  $ cf push
-  ```
-
-##Run the app locally
-1. If you do not already have a Bluemix account, [sign up here](https://console.ng.bluemix.net/registration/)
-
-2. Download and install the [Cloud Foundry CLI](https://github.com/cloudfoundry/cli/releases) tool
-
-3. Clone the app to your local environment from your terminal using the following command:
-
-  ```
-  git clone https://github.com/slkaczma/watson-bot-starter.git
-  ```
-
-4. `cd` into this newly created directory
-
-5. Log into your Bluemix account and navigate to the Catalog.
-
-6. Create the Watson Conversation service using your Bluemix account and replace the corresponding credentials in your `app.js` file. 
-
-  ```
-  var conversation = watson.conversation({
-      url: 'https://gateway.watsonplatform.net/conversation/api',   
-      username: 'CONVERSATION_USERNAME',   // Set to your conversation username
-      password: 'CONVERSATION_PASSWORD',   // Set to your conversation password
-      version_date: '2016-07-11',
-      version: 'v1'
-  });
-  ```
-  
-7. Once you have a workspace/conversation created, update your Workspace ID:
-   ```
-   var workspace = 'WORKSPACE_ID'; // Set to your Conversation workspace ID
-   ```
-
-8. Start your app locally with the following commands
-
-  ```
-  npm install
-  ```
-  ```
-  node app
-  ```
-  
-##Start Creating Conversations
- 1. Create an instance of the Watson Conversation service.
-    ![service tile](img/service.jpg)
-
- 2. Copy the credential into app.js. See above.
-    ![service credentials](img/credentials.jpg)
-
- 3. Click on the service tile. Open the service dashboard using the Launch button under the Manage tab.
-    ![launch service workspace](img/launch.jpg)
-
- 4. Create a new workspace. Select the three dots and select View details to get the Workspace ID for your bot.
-    ![get the workspace id](img/workspace.jpg)
-
- 5. Click on the newly created workspace to start creating intent, entities, and dialog. 
-    ![create dialog](img/building.jpg)
-
- 6. Always make sure to have a conversation_start condition as the first box in your dialog. 
-    ![conversation start](img/convostart.jpg)
+      Request type    | Key            | Description
+     ==========================================================================
+      /train          | mode           | Training mode - test or prod
+     -----------------+----------------+---------------------------------------
+                      | query          | query for model, need to have 
+                      |                | 'country','year','month','day'
+      /predict        | query_type     | query_type - only dict is supported
+                      | mode           | model to be used - test or prod
+     -----------------+----------------+---------------------------------------
+      /logs           | filename       | log filename to be retrived
+     -----------------+----------------+---------------------------------------
